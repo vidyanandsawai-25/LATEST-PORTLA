@@ -455,7 +455,7 @@ export function CitizenLanding({
 
       {/* Header/Navbar */}
       <nav className="relative z-20 bg-gradient-to-r from-[#005AA7] via-[#0077B6] to-[#00C6FF] border-b border-blue-400/30 shadow-lg sticky top-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-3">
               <motion.div
@@ -495,8 +495,8 @@ export function CitizenLanding({
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-16 pb-24 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative z-10 pt-16 pb-24 px-6 sm:px-8 lg:px-12">
+        <div className="w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div
@@ -747,7 +747,7 @@ export function CitizenLanding({
 
                 {/* Floating Chat Button - Positioned in this section */}
                 {!isChatOpen && (
-                  <div className="absolute -bottom-48 -right-6 w-24 h-24 z-50">
+                  <div className="fixed bottom-8 right-8 w-20 h-20 z-50">
                     {/* Pulsing Ring Effect - Outer */}
                     <motion.div
                       className="absolute inset-0 rounded-full border-4 border-blue-400"
@@ -800,7 +800,7 @@ export function CitizenLanding({
                         damping: 15,
                       }}
                       onClick={() => setIsChatOpen(true)}
-                      className="relative w-24 h-24 rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-transform hover:scale-110 overflow-hidden border-4 border-white"
+                      className="relative w-20 h-20 rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-transform hover:scale-110 overflow-hidden border-4 border-white"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-br from-[#005AA7] via-[#0077B6] to-[#00C6FF] rounded-full"
@@ -975,7 +975,7 @@ export function CitizenLanding({
       </section> */}
 
       {/* Footer */}
-      <footer className="relative z-10 bg-gradient-to-br from-gray-900 to-blue-900 text-white py-12 px-4">
+      {/* <footer className="relative z-10 bg-gradient-to-br from-gray-900 to-blue-900 text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -1086,7 +1086,7 @@ export function CitizenLanding({
             </p>
           </div>
         </div>
-      </footer>
+      </footer> */}
 
       {/* Track Application Dialog */}
       <TrackStatus
