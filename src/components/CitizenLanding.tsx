@@ -34,16 +34,9 @@ import {
   Smartphone,
   Rocket,
   Search,
-  Languages,
-  Check,
 } from "lucide-react";
 import jalmitra from "figma:asset/bd3d14033ffadc4971e7e9ff337ef5d148d5cddc.png";
 import { TrackStatus } from "./citizen/TrackStatus";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./ui/popover";
 
 interface CitizenLandingProps {
   onNavigateToLogin: () => void;
@@ -103,15 +96,6 @@ export function CitizenLanding({
   );
   const [showTrackDialog, setShowTrackDialog] = useState(false);
   const [trackingId, setTrackingId] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
-  const [isLanguagePopoverOpen, setIsLanguagePopoverOpen] = useState(false);
-
-  // Language options
-  const languages = [
-    { code: "en", name: "English", nativeName: "English", flag: "🇮🇳" },
-    { code: "hi", name: "Hindi", nativeName: "हिन्दी", flag: "🇮🇳" },
-    { code: "mr", name: "Marathi", nativeName: "मराठी", flag: "🇮🇳" },
-  ];
 
   // Chatbot states
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -471,7 +455,7 @@ export function CitizenLanding({
 
       {/* Header/Navbar */}
       <nav className="relative z-20 bg-gradient-to-r from-[#005AA7] via-[#0077B6] to-[#00C6FF] border-b border-blue-400/30 shadow-lg sticky top-0">
-        <div className="w-full px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-3">
               <motion.div
@@ -491,70 +475,6 @@ export function CitizenLanding({
               </div>
             </div>
             <div className="flex items-center gap-4">
-              {/* Language Selector */}
-              <Popover open={isLanguagePopoverOpen} onOpenChange={setIsLanguagePopoverOpen}>
-                <PopoverTrigger asChild>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-xl text-white hover:bg-white/20 hover:border-white/50 transition-all shadow-lg"
-                  >
-                    <Languages className="w-5 h-5" />
-                    <span className="hidden sm:inline font-medium">
-                      {languages.find((l) => l.code === selectedLanguage)?.nativeName || "English"}
-                    </span>
-                    <span className="text-lg">
-                      {languages.find((l) => l.code === selectedLanguage)?.flag || "IN"}
-                    </span>
-                  </motion.button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-white border-2 border-blue-200 shadow-2xl rounded-2xl" align="end">
-                  <div className="space-y-1">
-                    <div className="px-3 py-2 border-b-2 border-blue-100">
-                      <p className="text-sm text-gray-600 font-semibold">Select Language</p>
-                      <p className="text-xs text-gray-500">भाषा चुनें • Choose Language</p>
-                    </div>
-                    {languages.map((language) => (
-                      <motion.button
-                        key={language.code}
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => {
-                          setSelectedLanguage(language.code);
-                          setIsLanguagePopoverOpen(false);
-                        }}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
-                          selectedLanguage === language.code
-                            ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md"
-                            : "hover:bg-blue-50 text-gray-700"
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{language.flag}</span>
-                          <div className="text-left">
-                            <p className={`text-sm font-bold ${selectedLanguage === language.code ? "text-white" : "text-gray-900"}`}>
-                              {language.nativeName}
-                            </p>
-                            <p className={`text-xs ${selectedLanguage === language.code ? "text-cyan-100" : "text-gray-500"}`}>
-                              {language.name}
-                            </p>
-                          </div>
-                        </div>
-                        {selectedLanguage === language.code && (
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 500 }}
-                          >
-                            <Check className="w-5 h-5 text-white" />
-                          </motion.div>
-                        )}
-                      </motion.button>
-                    ))}
-                  </div>
-                </PopoverContent>
-              </Popover>
-
               <Button
                 variant="outline"
                 onClick={onNavigateToLogin}
@@ -575,8 +495,8 @@ export function CitizenLanding({
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-16 pb-24 px-6 sm:px-8 lg:px-12">
-        <div className="w-full">
+      <section className="relative z-10 pt-16 pb-24 px-4">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div
@@ -656,7 +576,7 @@ export function CitizenLanding({
                     <div
                       className={`absolute inset-0 bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity rounded-2xl`}
                     ></div>
-                    {/* <div className="relative bg-white rounded-2xl p-4 border-2 border-blue-100 group-hover:border-blue-300 transition-all shadow-lg text-center">
+                    <div className="relative bg-white rounded-2xl p-4 border-2 border-blue-100 group-hover:border-blue-300 transition-all shadow-lg text-center">
                       <stat.icon
                         className={`w-8 h-8 mx-auto mb-2 bg-gradient-to-r ${stat.gradient} p-1.5 rounded-lg text-white`}
                       />
@@ -671,7 +591,7 @@ export function CitizenLanding({
                       <p className="text-xs text-gray-600 font-medium mt-1">
                         {stat.label}
                       </p>
-                    </div> */}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -827,7 +747,7 @@ export function CitizenLanding({
 
                 {/* Floating Chat Button - Positioned in this section */}
                 {!isChatOpen && (
-                  <div className="fixed bottom-8 right-8 w-20 h-20 z-50">
+                  <div className="absolute -bottom-48 -right-6 w-24 h-24 z-50">
                     {/* Pulsing Ring Effect - Outer */}
                     <motion.div
                       className="absolute inset-0 rounded-full border-4 border-blue-400"
@@ -880,7 +800,7 @@ export function CitizenLanding({
                         damping: 15,
                       }}
                       onClick={() => setIsChatOpen(true)}
-                      className="relative w-20 h-20 rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-transform hover:scale-110 overflow-hidden border-4 border-white"
+                      className="relative w-24 h-24 rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-transform hover:scale-110 overflow-hidden border-4 border-white"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-br from-[#005AA7] via-[#0077B6] to-[#00C6FF] rounded-full"
@@ -1055,7 +975,7 @@ export function CitizenLanding({
       </section> */}
 
       {/* Footer */}
-      {/* <footer className="relative z-10 bg-gradient-to-br from-gray-900 to-blue-900 text-white py-12 px-4">
+      <footer className="relative z-10 bg-gradient-to-br from-gray-900 to-blue-900 text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -1166,7 +1086,7 @@ export function CitizenLanding({
             </p>
           </div>
         </div>
-      </footer> */}
+      </footer>
 
       {/* Track Application Dialog */}
       <TrackStatus
